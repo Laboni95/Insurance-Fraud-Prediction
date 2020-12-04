@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Fraud Prediction</title>
+</head>
+
+<body>
+
+    <div style="color:blue">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2>Insurance Fraud Prediction</h2>
+            <h3>Months_as_Customer</h3><br><input id="first" name="months_as_customer" required="required">
+            <h3>Policy_Deductable</h3><input id="second" name="policy_deductable" required="required">
+            <h3>Umbrella_limit</h3><input id="third" name="umbrella_limit" required="required">
+            <h3>Capital_Gains</h3><input id="fourth" name="capital_gains" required="required">
+            <h3>Capital_Loss</h3><input id="fifth" name="capital_loss" required="required">
+            <h3>Incident_Hour_of_the_Day</h3><input id="sixth" name="incident_hour_of_the_day" required="required">
+            <h3>Number_of_Vehicles_Involved</h3><input id="seventh" name="numbers_of_vehicles_involved" required="required">
+            <h3>Bodily_Injuries</h3><input id="eight" name="bodyly_injuries" required="required">
+            <h3>Witnesses</h3><input id="nine" name="witnesses" required="required">
+            <h3>Injury_Claim</h3><input id="ten" name="injury_claim" required="required">
+            <h3>Property_Claim</h3><input id="eleven" name="property_claim" required="required">
+            <h3>Vehicle_Claim</h3><input id="twelve" name="vehicle_claim" required="required">
+            <h3>Policy_annual_Premium</h3><br><input id="thirteen" name="policy_annual_premium" required="required">
+            <h3>What Is Policy_CSL?</h3><br><select name="policy_csl" id="fourteen" required="required">
+                <option value="policy_csl_250">policy_csl_250</option>
+                <option value="policy_csl_500">policy_csl_500</option>
+                <option value="policy_csl_100">policy_csl_100</option>
+            </select>
+            <h3>What is Insured Education Level?</h3><br><select name="insured_education_level" id="fifteen" required="required">
+                <option value="insured_education_level_College">insured_education_level_College</option>
+                <option value="insured_education_level_HighSchool">insured_education_level_HighSchool</option>
+                <option value="insured_education_level_JD">insured_education_level_JD</option>
+                <option value="insured_education_level_MD">insured_education_level_MD</option>
+                <option value="insured_education_level_Masters">insured_education_level_Masters</option>
+                <option value="insured_education_level_PhD">insured_education_level_PhD</option>
+                <option value="insured_education_level_Associate">insured_education_level_Associate</option>
+            </select>
+            <h3>What is Sex?</h3><br><select name="insured_sex" id="sixteen" required="required">
+                <option value="insured_sex_MALE">insured_sex_MALE</option>
+                <option value="insured_sex_FEMALE">insured_sex_FEMALE</option>
+            </select>
+            <h3>What is The Occupation?</h3><br><select name="insured_occupation" id="seventeen" required="required">
+                <option value="insured_occupation_armed_forces">insured_occupation_armed_forces</option>
+                <option value="insured_occupation_craft_repair">insured_occupation_craft_repair</option>
+                <option value="insured_occupation_exec_managerial">insured_occupation_exec_managerial</option>
+                <option value="insured_occupation_farming_fishing">insured_occupation_farming_fishing</option>
+                <option value="insured_occupation_handlers_cleaners">insured_occupation_handlers_cleaners</option>
+                <option value="insured_occupation_machine_op_inspct">insured_occupation_machine_op_inspct</option>
+                <option value="insured_occupation_other_service">insured_occupation_other_service</option>
+                <option value="insured_occupation_priv_house_serv">insured_occupation_priv_house_serv</option>
+                <option value="insured_occupation_prof_specialty">insured_occupation_prof_specialty</option>
+                <option value="insured_occupation_protective_serv">insured_occupation_protective_serv</option>
+                <option value="insured_occupation_sales">insured_occupation_sales</option>
+                <option value="insured_occupation_tech_support">insured_occupation_tech_support</option>
+                <option value="insured_occupation_transport_moving">insured_occupation_transport_moving</option>
+                <option value="insured_occupation_adm_clerical">insured_occupation_adm_clerical</option>
+            </select>
+            <h3>What is The Relationship?</h3><br><select name="insured_relationship" id="eighteen" required="required">
+                <option value="insured_relationship_not_in_family">insured_relationship_not_in_family</option>
+                <option value="insured_relationship_other_relative">insured_relationship_other_relative</option>
+                <option value="insured_relationship_own_child">insured_relationship_own_child</option>
+                <option value="insured_relationship_unmarried">insured_relationship_unmarried</option>
+                <option value="insured_relationship_wife">insured_relationship_wife</option>
+                <option value="insured_relationship_husband">insured_relationship_husband</option>
+
+            </select>
+            <h3>What is Incident Type?</h3><br><select name="incident_type" id="nineteen" required="required">
+                <option value="incident_type_ParkedCar">incident_type_ParkedCar</option>
+                <option value="incident_type_SingleVehicleCollision">incident_type_SingleVehicleCollision</option>
+                <option value="incident_type_VehicleTheft">incident_type_VehicleTheft</option>
+                <option value="incident_type_Multi-vehicleCollision">incident_type_Multi-vehicleCollision</option>
+            </select>
+            <h3>What is Incident Severity?</h3><br><select name="incident_severity" id="twenty" required="required">
+                <option value="incident_severity_MinorDamage">incident_severity_MinorDamage</option>
+                <option value="incident_severity_TotalLoss">incident_severity_TotalLoss</option>
+                <option value="incident_severity_TrivialDamage">incident_severity_TrivialDamage</option>
+                <option value="incident_severity_MajorDamage">incident_severity_MajorDamage</option>
+            </select>
+            <h3>What is Collision Type?</h3><br><select name="collision_type" id="twentyone" required="required">
+                <option value="collision_type_RearCollision">collision_type_RearCollision</option>
+                <option value="collision_type_SideCollision">collision_type_SideCollision</option>
+                <option value="collision_type_FrontCollision">collision_type_FrontCollision</option>
+            </select>
+            <h3>What is The Authorities Contacted?</h3><br><select name="authorities_contacted" id="twentytwo" required="required">
+                <option value="authorities_contacted_Fire">authorities_contacted_Fire</option>
+                <option value="authorities_contacted_None">authorities_contacted_None</option>
+                <option value="authorities_contacted_Other">authorities_contacted_Other</option>
+                <option value="authorities_contacted_Police">authorities_contacted_Police</option>
+                <option value="authorities_contacted_Ambulance">authorities_contacted_Ambulance</option>
+            </select>
+            <h3>What is The Property Damage?</h3><br><select name="property_damage" id="twentythree" required="required">
+                <option value="property_damage_YES">property_damage_YES</option>
+                <option value="property_damage_NO">property_damage_NO</option>
+            </select>
+            <h3>Is Police Report Available?</h3><br><select name="police_report_available" id="twentyfour" required="required">
+                <option value="police_report_available_YES">police_report_available_YES</option>
+                <option value="police_report_available_NO">police_report_available_NO</option>
+            </select>
+            <br><br><button id="sub" type="submit ">Predicct Insurace Fraud</button>
+            <br>
+
+
+        </form>
+
+
+
+        <br><br><h3>{{ prediction_text }}<h3>
+             <p>©2020 Laboni Chakraborty</p>
+
+    </div>
+
+
+
+
+    <style>
+        body {
+            background-color: lightslategray;
+            text-align: center;
+            padding: 0px;
+        }
+
+        # fifteen {
+            font-size: 18px;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+        #fifteen:hover {
+            background-color: coral;
+        }
+
+        #box {
+            border-radius: 120px;
+            border-color: 45px;
+            border-style: solid;
+            font-family: cursive;
+            text-align: center;
+            background-color: rgb(168, 131, 61);
+            font-size: medium;
+            position: absolute;
+            width: 700px;
+            bottom: 9%;
+            height: 850px;
+            right: 30%;
+            padding: 0px;
+            margin: 0px;
+            font-size: 14px;
+        }
+
+        #thirteenteen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+
+        #thirteen:hover {
+            background-color: coral;
+        }
+
+        #fourteen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+
+        #fourteen:hover {
+            background-color: coral;
+        }
+
+        #fifteen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #fifteen:hover {
+            background-color: coral;
+        }
+
+        #sixteen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #sixteen:hover {
+            background-color: coral;
+        }
+
+        #seventeen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #seventeen:hover {
+            background-color: coral;
+        }
+
+        #eighteen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #eighteen:hover {
+            background-color: coral;
+        }
+
+        #nineteen {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #nineteen:hover {
+            background-color: coral;
+        }
+
+        #twenty {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #twenty:hover {
+            background-color: coral;
+        }
+
+        #twentyone {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #twentyone:hover {
+            background-color: coral;
+        }
+
+        #twentytwo {
+            width: 300;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #twentytwo:hover {
+            background-color: coral;
+        }
+
+        #twentythree {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #twentythree:hover {
+            background-color: coral;
+        }
+
+        #twentyfour {
+            width: 300px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+
+        #twentyfour:hover {
+            background-color: coral;
+        }
+
+        #sub {
+            width: 300px;
+            height: 28px;
+            text-align: center;
+            border-radius: 18px;
+            font-size: 18px;
+        }
+
+        #sub:hover {
+            background-color: darkcyan;
+        }
+
+
+        #first {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #second {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #third {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #fourth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #fifth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #sixth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #seventh {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #eight {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #nine {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #ten {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #eleven {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #twelve {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #thirteen {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</body>
+
+</html>
+
+
+
+
+
