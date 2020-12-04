@@ -27,8 +27,8 @@ pip install -r requirements.txt
 ├── Procfile
 ├── README.md
 ├── app.py
-├── flight_price.ipynb
-├── flight_rf.pkl
+├── Insurance Fraud Prediction.ipynb
+├── insurance_model.pkl
 ├── requirements.txt
 ```
 
